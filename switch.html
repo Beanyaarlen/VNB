@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Switch · VNB Artisan Switch</title>
+<meta name="description" content="Tiga tipe saklar VNB: Toggle, Vintage, dan Classic. Putar, tekan, dan ganti finish dalam 3D.">
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="style.css?v=20261111r">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+.nav{background:rgba(0,0,0,.78)}
+.sw-page{padding:clamp(7rem,12vw,9.5rem) var(--gutter) clamp(4rem,8vw,7rem);background:var(--basalt)}
+.sw-page .sw-head{display:none}
+.sw-page .sw3d-stage{aspect-ratio:1/1.05}
+.pg-note{margin:clamp(2rem,4vw,3rem) 0 0;display:flex;gap:1rem 2rem;align-items:center;justify-content:space-between;flex-wrap:wrap;color:var(--bone-dim)}
+.sw-note p{margin:0;max-width:36rem}
+</style>
+</head>
+<body>
+<div class="pt" aria-hidden="true"><i></i></div>
+
+<header class="nav nav--sub is-solid" id="nav">
+  <div class="nav-l"><a class="brand" href="index.html" aria-label="VNB, ke beranda">VNB</a><a class="nav-back" href="index.html#produk" aria-label="Kembali ke beranda"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Beranda</span></a></div>
+  <nav class="nav-links" aria-label="Utama">
+    <a href="switch.html" aria-current="page">Switch</a>
+    <a href="tower.html">Tower &amp; Table</a>
+    <a href="index.html#detail">Detail</a>
+  </nav>
+  <a class="btn-catalog" href="https://vnbelectric.com/" target="_blank" rel="noopener">E-Catalog</a>
+  <span class="nav-prog" aria-hidden="true"><i></i></span>
+</header>
+
+<main>
+<section class="sf" data-scene="switch" aria-label="Perjalanan 3D melewati tiga tipe saklar VNB">
+  <div class="sf-pin">
+    <canvas class="sf-cv" aria-hidden="true"></canvas>
+    <div class="sf-shade" aria-hidden="true"></div>
+    <div class="sf-caps">
+      <div class="sf-cap is-on"><small>VNB Artisan Switch</small><h2>Tiga dinding. Tiga cara menyalakan ruangan.</h2><p>Gulir untuk masuk.</p></div>
+      <div class="sf-cap" aria-hidden="true"><small>01 &middot; Toggle</small><h2>Ke bawah menyala, ke atas mati.</h2><p>Tuas silinder polos dengan dua posisi on/off yang terkunci. Kaitkan jari di atas tuas, lalu tarik ke bawah.</p></div>
+      <div class="sf-cap" aria-hidden="true"><small>02 &middot; Vintage</small><h2>Detail tekstur yang terasa di jari.</h2><p>Dark Grey utuh: plat, cincin, sekrup, dan tuas bertekstur dalam satu warna. On di bawah, off di atas.</p></div>
+      <div class="sf-cap" aria-hidden="true"><small>03 &middot; Classic</small><h2>Satu lembar logam yang berpindah sisi.</h2><p>Tekan sisi yang rata, sisi lawannya terangkat. Terkunci seperti tombol on/off.</p></div>
+      <div class="sf-cap" aria-hidden="true"><small>Toggle &middot; Vintage &middot; Classic</small><h2>Semua seri, satu dinding.</h2><p>1 sampai 4 gang, Schuko, dan soket universal dalam lima finish: White, Dark Grey, Black Doff, Brush Gold, Antique Brass.</p></div>
+    </div>
+    <div class="sf-rail" aria-hidden="true"><span class="sf-fill"></span><ol><li>Mulai</li><li>Toggle</li><li>Vintage</li><li>Classic</li><li>Semua</li></ol></div>
+    <div class="sf-cue" aria-hidden="true"><span>Gulir</span><i></i></div>
+  </div>
+</section>
+
+<section class="sw-page" aria-labelledby="swTitle">
+  <div class="pg-hero">
+    <div><span class="eyebrow"><svg class="bulb" viewBox="0 0 24 24" aria-hidden="true"><path class="glass" d="M9 17.5h6M10 20.5h4M12 3.5a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.4 1.1 2.2h5c0-.8.4-1.6 1.1-2.2A6 6 0 0 0 12 3.5z"/><path class="fil" d="M10.5 12.2 12 9.8l1.5 2.4"/></svg>Switch</span>
+    <h1 id="swTitle">Tiga tipe, satu plat logam <em class="shine">setebal 3 mm.</em></h1></div>
+    <p>Toggle, Vintage, dan Classic punya plat yang sama dalam lima finish. Bedanya ada di bentuk tuas. Seret untuk memutar, ketuk tuas untuk on/off, dan buka bagian dalamnya.</p>
+  </div>
+
+    <div class="sw-trio" id="switch3d">
+      <div class="sw-head">
+        <h3>Switch</h3>
+        <p>Tiga tipe, satu plat logam setebal 3 mm, dalam lima finish. Bedanya ada di bentuk tuas. Semuanya saklar on/off dua posisi: tuas ke bawah menyala, ke atas mati. Classic berpindah sisi.</p>
+      </div>
+      <div class="sw-cards">
+      <article class="swcard" data-type="toggle" aria-labelledby="swt-toggle">
+        <div class="sw3d-stage">
+          <img class="sw3d-poster" src="img/switch.jpg" alt="Saklar Toggle VNB hitam dengan tuas silinder polos" loading="lazy" decoding="async" width="890" height="290" style="object-position:50% 50%">
+          <canvas tabindex="0" aria-label="Model 3D saklar Toggle. Seret untuk memutar, ketuk tuas untuk mencobanya."></canvas>
+          <p class="sw3d-hint" aria-hidden="true">Seret untuk memutar &middot; ketuk tuas</p>
+          <div class="sw3d-fps" hidden></div>
+        </div>
+        <div class="swbody">
+          <h4 id="swt-toggle">Toggle</h4>
+          <p class="swdesc">Tuas silinder polos yang rata dan bersih, tanpa tekstur. Tarik ke bawah untuk on, dorong ke atas untuk off.</p>
+          <p class="swfacts">Plat 3 mm · 1 sampai 4 gang · tersedia Schuko dan soket universal dengan USB A + C</p>
+          <div class="ctl"><span class="lbl">Gang</span><div class="chips"><button type="button" class="chip">1</button><button type="button" class="chip is-on">2</button></div></div>
+          <div class="ctl"><span class="lbl">Finish</span><div class="swatches"><button type="button" class="fsw is-on" data-f="gold" style="--c:#cdb374" aria-pressed="true" aria-label="Brush Gold"></button><button type="button" class="fsw" data-f="brass" style="--c:#5e4733" aria-pressed="false" aria-label="Antique Brass"></button><button type="button" class="fsw" data-f="grey" style="--c:#505154" aria-pressed="false" aria-label="Dark Grey"></button><button type="button" class="fsw" data-f="black" style="--c:#2a2a2e" aria-pressed="false" aria-label="Black Doff"></button><button type="button" class="fsw" data-f="white" style="--c:#f2f1ec" aria-pressed="false" aria-label="White"></button><span class="finname">Brush Gold</span></div></div>
+          <div class="actions"><button type="button" class="btn3d act">Nyalakan semua</button><button type="button" class="btn3d explode" aria-pressed="false">Lihat bagian dalam</button></div>
+        </div>
+      </article>
+      <article class="swcard" data-type="vintage" aria-labelledby="swt-vintage">
+        <div class="sw3d-stage">
+          <img class="sw3d-poster" src="img/switch.jpg" alt="Saklar Vintage VNB kuningan dengan tuas bertekstur dan sekrup hias" loading="lazy" decoding="async" width="890" height="290" style="object-position:100% 50%">
+          <canvas tabindex="0" aria-label="Model 3D saklar Vintage. Seret untuk memutar, ketuk tuas untuk mencobanya."></canvas>
+          <p class="sw3d-hint" aria-hidden="true">Seret untuk memutar &middot; ketuk tuas</p>
+          <div class="sw3d-fps" hidden></div>
+        </div>
+        <div class="swbody">
+          <h4 id="swt-vintage">Vintage</h4>
+          <p class="swdesc">Tuas bertekstur titik-titik cekung seperti kenop mixer dan alat musik, dengan cincin di pangkalnya dan dua sekrup hias. Ke bawah on, ke atas off.</p>
+          <p class="swfacts">Plat 3 mm · 1 sampai 4 gang · tersedia Schuko dan soket universal dengan saklar</p>
+          <div class="ctl"><span class="lbl">Gang</span><div class="chips"><button type="button" class="chip">1</button><button type="button" class="chip is-on">2</button></div></div>
+          <div class="ctl"><span class="lbl">Finish</span><div class="swatches"><button type="button" class="fsw is-on" data-f="gold" style="--c:#cdb374" aria-pressed="true" aria-label="Brush Gold"></button><button type="button" class="fsw" data-f="brass" style="--c:#5e4733" aria-pressed="false" aria-label="Antique Brass"></button><button type="button" class="fsw" data-f="grey" style="--c:#505154" aria-pressed="false" aria-label="Dark Grey"></button><button type="button" class="fsw" data-f="black" style="--c:#2a2a2e" aria-pressed="false" aria-label="Black Doff"></button><button type="button" class="fsw" data-f="white" style="--c:#f2f1ec" aria-pressed="false" aria-label="White"></button><span class="finname">Brush Gold</span></div></div>
+          <div class="actions"><button type="button" class="btn3d act">Nyalakan semua</button><button type="button" class="btn3d explode" aria-pressed="false">Lihat bagian dalam</button></div>
+        </div>
+      </article>
+      <article class="swcard" data-type="classic" aria-labelledby="swt-classic">
+        <div class="sw3d-stage">
+          <img class="sw3d-poster" src="img/switch.jpg" alt="Saklar Classic VNB emas dengan tuas lembaran tipis" loading="lazy" decoding="async" width="890" height="290" style="object-position:0% 50%">
+          <canvas tabindex="0" aria-label="Model 3D saklar Classic. Seret untuk memutar, ketuk tuas untuk mencobanya."></canvas>
+          <p class="sw3d-hint" aria-hidden="true">Seret untuk memutar &middot; ketuk tuas</p>
+          <div class="sw3d-fps" hidden></div>
+        </div>
+        <div class="swbody">
+          <h4 id="swt-classic">Classic</h4>
+          <p class="swdesc">Satu lembar logam tipis yang ditekuk sekitar 155°. Tekan sisi yang rata, lalu sisi itu terangkat dan sisi lawannya menjadi rata, seperti tombol on/off.</p>
+          <p class="swfacts">Plat 3 mm · 1 sampai 3 gang · Fully Customized Switch</p>
+          <div class="ctl"><span class="lbl">Gang</span><div class="chips"><button type="button" class="chip">1</button><button type="button" class="chip is-on">2</button></div></div>
+          <div class="ctl"><span class="lbl">Finish</span><div class="swatches"><button type="button" class="fsw is-on" data-f="gold" style="--c:#cdb374" aria-pressed="true" aria-label="Brush Gold"></button><button type="button" class="fsw" data-f="brass" style="--c:#5e4733" aria-pressed="false" aria-label="Antique Brass"></button><button type="button" class="fsw" data-f="grey" style="--c:#505154" aria-pressed="false" aria-label="Dark Grey"></button><button type="button" class="fsw" data-f="black" style="--c:#2a2a2e" aria-pressed="false" aria-label="Black Doff"></button><button type="button" class="fsw" data-f="white" style="--c:#f2f1ec" aria-pressed="false" aria-label="White"></button><span class="finname">Brush Gold</span></div></div>
+          <div class="actions"><button type="button" class="btn3d act">Nyalakan semua</button><button type="button" class="btn3d explode" aria-pressed="false">Lihat bagian dalam</button></div>
+        </div>
+      </article>
+      </div>
+    </div>
+
+  <div class="pg-note">
+    <p>Spesifikasi lengkap, ukuran, dan varian Schuko atau soket universal ada di E-Catalog VNB.</p>
+    <a class="btn-cta" href="https://vnbelectric.com/" target="_blank" rel="noopener">Buka E-Catalog</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <span class="brand">VNB</span>
+  <p>VNB Electric Indonesia</p>
+</footer>
+
+<script>
+(function(){var el=document.getElementById('switch3d');if(!el)return;
+  try{var c=document.createElement('canvas');if(!(c.getContext('webgl2')||c.getContext('webgl')))return}catch(e){return}
+  var s=document.createElement('script');s.src='switch3d.js?v=20261111';document.body.appendChild(s);
+})();
+</script>
+<script src="realfly.js?v=20261111q"></script>
+<script src="ui.js?v=20261110a"></script>
+<script src="motion.js?v=20261111a"></script>
+</body>
+</html>

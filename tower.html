@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tower &amp; Table Socket · VNB</title>
+<meta name="description" content="Tower Motorised Socket naik dengan sentuhan, Table Socket naik dengan satu tekanan. Lihat cara pakainya dalam 3D.">
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="style.css?v=20261111r">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+.nav{background:rgba(0,0,0,.78)}
+.tw-page{padding:clamp(7rem,12vw,9.5rem) var(--gutter) clamp(4rem,8vw,7rem);background:#000}
+.tw-eyebrow-x{display:block;margin-bottom:.9rem;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
+/* pemilih tipe */
+.tw-seg{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;padding:.4rem;border-radius:1.1rem;background:#050505;border:1px solid rgba(255,255,255,.08);margin-bottom:1.1rem}
+.tw-tab{display:flex;align-items:center;gap:.85rem;text-align:left;font:inherit;color:var(--bone-dim);background:transparent;border:1px solid transparent;border-radius:.8rem;padding:.8rem 1rem;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.tw-tab svg{flex:none;width:2.1rem;height:2.1rem;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.tw-tab b{display:block;font-weight:600;font-size:1.02rem;color:inherit;line-height:1.25}
+.tw-tab small{display:block;font-size:.85rem;opacity:.75;line-height:1.3}
+.tw-tab:hover{color:#fff;background:rgba(255,255,255,.04)}
+.tw-tab.is-on{background:var(--bone);color:#141416;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.tw-tab.is-on small{opacity:.7}
+/* panggung + panel */
+.tw-grid{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:clamp(1rem,2vw,1.75rem);align-items:stretch}
+.tw-stage{position:relative;min-height:30rem;aspect-ratio:auto;border-radius:1.25rem;overflow:hidden;background:#000;border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}
+.tw-stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(90% 80% at 50% 45%,transparent 55%,rgba(8,8,10,.55) 100%),linear-gradient(to top,rgba(8,8,10,.5),transparent 28%)}
+.tw-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y;cursor:grab}
+.tw-stage canvas:active{cursor:grabbing}
+.tw-top{position:absolute;z-index:2;left:1rem;right:1rem;top:1rem;display:flex;justify-content:space-between;align-items:center;gap:.75rem;pointer-events:none}
+.tw-hint{font-size:.8rem;letter-spacing:.04em;color:rgba(255,255,255,.62)}
+.tw-state{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .8rem;border-radius:999px;background:rgba(15,15,17,.7);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);font-size:.82rem;color:#fff}
+.tw-state::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:#7c7d82}
+.tw-state[data-s=up]::before{background:#52d68a;box-shadow:0 0 10px #52d68a}
+.tw-state[data-s=move]::before{background:#ffb84d;box-shadow:0 0 10px #ffb84d}
+.tw-cap{position:absolute;z-index:2;left:1rem;right:1rem;bottom:4.9rem;margin:0 auto;max-width:34rem;text-align:center;padding:.75rem 1.2rem;border-radius:.9rem;background:rgba(15,15,17,.8);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:1.02rem;line-height:1.35;transition:opacity .25s,transform .25s}
+.tw-cap.is-empty{opacity:0;transform:translateY(6px)}
+.tw-bar{position:absolute;z-index:2;left:1rem;right:1rem;bottom:1rem;display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.tw-bar .btn3d{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.tw-act{background:var(--bone)!important;color:#141416!important;border-color:var(--bone)!important;font-weight:600}
+.tw-act:disabled{opacity:.55;cursor:default}
+.tw-panel{display:flex;flex-direction:column;gap:1.25rem;padding:clamp(1.25rem,2.2vw,1.9rem);border-radius:1.25rem;background:#050505;border:1px solid rgba(255,255,255,.08)}
+.tw-panel h2{padding-right:3rem;margin:0;font-family:var(--serif);font-weight:500;font-size:clamp(1.7rem,2.5vw,2.2rem);letter-spacing:-.01em;line-height:1.1}
+.tw-panel .lead{margin:.5rem 0 0;color:var(--bone-dim)}
+.tw-steps{margin:0;padding:0;list-style:none;position:relative;display:grid;gap:.5rem}
+.tw-steps li{display:grid;grid-template-columns:2.1rem 1fr;gap:.85rem;align-items:start;padding:.8rem .9rem;border:1px solid rgba(255,255,255,.08);border-radius:.85rem;color:var(--bone-dim);font-size:.97rem;transition:border-color .25s,background .25s,color .25s}
+.tw-steps li b{display:grid;place-items:center;width:1.9rem;height:1.9rem;border-radius:50%;border:1px solid rgba(255,255,255,.28);font-weight:600;font-size:.85rem;color:#fff;transition:background .25s,color .25s}
+.tw-steps li strong{display:block;color:#fff;font-weight:600;margin-bottom:.1rem}
+.tw-steps li.is-next{border-color:rgba(255,255,255,.22)}
+.tw-steps li.is-on{border-color:var(--brass);background:rgba(201,165,102,.09);color:#fff}
+.tw-steps li.is-on b{background:var(--brass);color:#141416;border-color:var(--brass)}
+.tw-specs{margin:0;display:grid;gap:.1rem}
+.tw-specs div{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-top:1px solid rgba(255,255,255,.08);font-size:.93rem}
+.tw-specs dt{color:var(--bone-dim)}
+.tw-specs dd{margin:0;text-align:right;color:var(--bone)}
+.tw-finrow{display:flex;align-items:center;gap:.8rem;color:var(--bone-dim);font-size:.9rem}
+.tw-fin{width:1.9rem;height:1.9rem;border-radius:50%;border:2px solid transparent;outline:1px solid rgba(255,255,255,.25);outline-offset:2px;cursor:pointer;background:var(--c)}
+.tw-fin.is-on{border-color:var(--bone);outline-color:transparent}
+[hidden]{display:none!important}
+.sf-tower{height:820vh}
+.sf-tower .sf-rail ol{grid-template-columns:repeat(4,1fr)}
+.pg-note{margin:clamp(2rem,4vw,3rem) 0 0;display:flex;gap:1rem 2rem;align-items:center;justify-content:space-between;flex-wrap:wrap;color:var(--bone-dim)}
+.pg-note p{margin:0;max-width:36rem}
+@media (max-width:1000px){.tw-grid{grid-template-columns:1fr}.tw-stage{min-height:0;aspect-ratio:1/1.1}}
+@media (max-width:560px){.tw-seg{grid-template-columns:1fr}.tw-cap{bottom:6.4rem;font-size:.95rem}.tw-hint{display:none}}
+</style>
+</head>
+<body>
+<div class="pt" aria-hidden="true"><i></i></div>
+
+<header class="nav nav--sub is-solid" id="nav">
+  <div class="nav-l"><a class="brand" href="index.html" aria-label="VNB, ke beranda">VNB</a><a class="nav-back" href="index.html#produk" aria-label="Kembali ke beranda"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Beranda</span></a></div>
+  <nav class="nav-links" aria-label="Utama">
+    <a href="switch.html">Switch</a>
+    <a href="tower.html" aria-current="page">Tower &amp; Table</a>
+    <a href="index.html#detail">Detail</a>
+  </nav>
+  <a class="btn-catalog" href="https://vnbelectric.com/" target="_blank" rel="noopener">E-Catalog</a>
+  <span class="nav-prog" aria-hidden="true"><i></i></span>
+</header>
+
+<main>
+<section class="sf sf-tower" data-scene="tower" aria-label="Cerita 3D Tower Motorised Socket saat digulir">
+  <div class="sf-pin">
+    <canvas class="sf-cv" aria-hidden="true"></canvas>
+    <div class="sf-shade" aria-hidden="true"></div>
+    <div class="sf-caps">
+      <div class="sf-cap is-on"><small>Tower Motorised Socket</small><h2>Meja yang tetap rapi.</h2><p>Tidak ada stop kontak yang terlihat. Hanya tutup kaca hitam, rata di permukaan meja.</p></div>
+      <div class="sf-cap" aria-hidden="true"><small>Sentuh sekali</small><h2>Tower naik dengan sendirinya.</h2><p>Sentuh ikon power, motor mengangkatnya perlahan. Ada pengaman anti-jepit dan anti-tabrak.</p></div>
+      <div class="sf-cap" aria-hidden="true"><small>Siap dipakai</small><h2>Tiga stop kontak, USB A dan C.</h2><p>Semua titik daya muncul tepat di tempat Anda bekerja.</p></div>
+      <div class="sf-cap" aria-hidden="true"><small>Dipakai</small><h2>Daya di tempat Anda bekerja.</h2><p>Isi daya ponsel lewat USB-C sambil bekerja. Sentuh lagi ikon power, tower turun sampai rata dengan meja.</p></div>
+    </div>
+    <div class="sf-rail" aria-hidden="true"><span class="sf-fill"></span><ol><li>Tersembunyi</li><li>Naik</li><li>Terangkat</li><li>Dipakai</li></ol></div>
+    <div class="sf-cue" aria-hidden="true"><span>Gulir</span><i></i></div>
+  </div>
+</section>
+
+<section class="tw-page" aria-labelledby="twTitle">
+  <div class="pg-hero">
+    <div><span class="eyebrow"><svg class="bulb" viewBox="0 0 24 24" aria-hidden="true"><path class="glass" d="M9 17.5h6M10 20.5h4M12 3.5a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.4 1.1 2.2h5c0-.8.4-1.6 1.1-2.2A6 6 0 0 0 12 3.5z"/><path class="fil" d="M10.5 12.2 12 9.8l1.5 2.4"/></svg>Tower &amp; Table Socket</span>
+    <h1 id="twTitle">Stop kontak yang muncul <em class="shine">hanya saat dibutuhkan.</em></h1></div>
+    <p>Tersembunyi rata dengan meja, lalu naik dengan sentuhan atau satu tekanan. Pilih tipenya dan lihat cara pakainya lewat tangan transparan di animasi.</p>
+  </div>
+
+  <div id="tower3d">
+    <div class="tw-seg" role="tablist" aria-label="Tipe">
+      <button type="button" class="tw-tab is-on" role="tab" data-t="motor" aria-selected="true">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5v11"/><path d="M9.5 9.5a9 9 0 1 0 13 0"/></svg>
+        <span><b>Tower Motorised Socket</b><small>Sentuh ikon power</small></span>
+      </button>
+      <button type="button" class="tw-tab" role="tab" data-t="push" aria-selected="false">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4v13"/><path d="m10.5 12 5.5 5.5 5.5-5.5"/><path d="M5 22h22v5H5z"/></svg>
+        <span><b>Table Socket</b><small>Tekan, lalu lepas</small></span>
+      </button>
+    </div>
+
+    <div class="tw-grid">
+      <div class="tw-stage">
+        <canvas aria-label="Model 3D. Seret untuk memutar."></canvas>
+        <div class="tw-top"><span class="tw-hint">Seret untuk memutar</span><span class="tw-state" data-s="down">Tersembunyi</span></div>
+        <div class="tw-cap is-empty" role="status" aria-live="polite"></div>
+        <div class="tw-bar">
+          <button type="button" class="btn3d tw-act">Naikkan</button>
+          <button type="button" class="btn3d tw-auto" aria-pressed="false">Putar demo otomatis</button>
+          <button type="button" class="btn3d tw-tour" aria-pressed="false">Tur kamera</button>
+        </div>
+      </div>
+
+      <aside class="tw-panel">
+        <div data-for="motor">
+          <h2>Tower Motorised Socket</h2>
+          <p class="lead">Naik dan turun dengan motor. Cukup sentuh ikon power di bagian atas, tidak perlu ditekan.</p>
+        </div>
+        <div data-for="push" hidden>
+          <h2>Table Socket</h2>
+          <p class="lead">Naik dengan satu tekanan, lalu dimasukkan kembali dengan menekannya sampai ke bawah.</p>
+        </div>
+
+        <ol class="tw-steps" data-for="motor">
+          <li class="tw-step" data-t="motor" data-a="up"><b>1</b><span><strong>Sentuh untuk naik</strong>Sentuh ikon power satu kali. Tower naik sendiri.</span></li>
+          <li class="tw-step" data-t="motor" data-a="down"><b>2</b><span><strong>Sentuh lagi untuk turun</strong>Sentuh ikon power lagi. Tower turun sampai rata dengan meja.</span></li>
+        </ol>
+        <ol class="tw-steps" data-for="push" hidden>
+          <li class="tw-step" data-t="push" data-a="up"><b>1</b><span><strong>Tekan untuk naik</strong>Tekan tutup bagian atas sekali, lalu lepas. Tower naik otomatis.</span></li>
+          <li class="tw-step" data-t="push" data-a="down"><b>2</b><span><strong>Tekan sampai bawah</strong>Untuk memasukkan, tekan terus sampai ke bawah hingga terkunci rata.</span></li>
+        </ol>
+
+        <dl class="tw-specs" data-for="motor">
+          <div><dt>Pengisian</dt><dd>Wireless fast charging, USB A + C</dd></div>
+          <div><dt>Stop kontak</dt><dd>Tiga, universal</dd></div>
+          <div><dt>Perlindungan</dt><dd>IP44, anti-tabrak</dd></div>
+          <div><dt>Panel</dt><dd>Sentuh, dengan lampu LED</dd></div>
+        </dl>
+        <dl class="tw-specs" data-for="push" hidden>
+          <div><dt>Pengisian</dt><dd>Wireless charging, USB A + C</dd></div>
+          <div><dt>Stop kontak</dt><dd>Tiga Schuko</dd></div>
+          <div><dt>Cara naik</dt><dd>Satu tekanan, otomatis</dd></div>
+          <div><dt>Varian lain</dt><dd>Type 148 dan 149 membuka seperti tutup</dd></div>
+        </dl>
+
+        <div class="tw-finrow" data-for="motor"><span>Finish</span>
+          <button type="button" class="tw-fin is-on" data-f="black" style="--c:#222224" aria-label="Hitam"></button>
+          <button type="button" class="tw-fin" data-f="white" style="--c:#e4e3df" aria-label="Putih"></button>
+        </div>
+        <div class="tw-opt"><span>Cahaya</span><div class="tw-chips" data-grp="light">
+          <button type="button" class="tw-chip is-on" data-v="studio">Studio</button><button type="button" class="tw-chip" data-v="warm">Hangat</button><button type="button" class="tw-chip" data-v="night">Malam</button></div></div>
+        <div class="tw-opt"><span>Tangan</span><div class="tw-chips" data-grp="hand">
+          <button type="button" class="tw-chip is-on" data-v="ghost">Penjelas</button><button type="button" class="tw-chip" data-v="skin">Realistis</button></div></div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="pg-note">
+    <p>Model 3D ini ilustrasi cara kerja. Ukuran dan tampilan produk asli mengikuti E-Catalog VNB.</p>
+    <a class="btn-cta" href="https://vnbelectric.com/" target="_blank" rel="noopener">Buka E-Catalog</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <span class="brand">VNB</span>
+  <p>VNB Electric Indonesia</p>
+</footer>
+
+<script>
+(function(){var el=document.getElementById('tower3d');if(!el)return;
+  try{var c=document.createElement('canvas');if(!(c.getContext('webgl2')||c.getContext('webgl')))return}catch(e){return}
+  var s=document.createElement('script');s.src='tower3d.js?v=20261110';document.body.appendChild(s);
+})();
+</script>
+<script src="realfly.js?v=20261111q"></script>
+<script src="ui.js?v=20261110d"></script>
+<script src="motion.js?v=20261111a"></script>
+</body>
+</html>
