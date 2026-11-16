@@ -438,7 +438,7 @@ html,body{background:#000}
 .sf{position:relative;height:900vh;background:#000}
 .sf.sf-off{display:none}
 .sf-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#000}
-.sf-cv{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 1.2s var(--ease-out)}
+.sf-cv{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;opacity:0;transition:opacity 1.2s var(--ease-out)}
 .sf.is-ready .sf-cv{opacity:1}
 .sf-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.2) 40%,rgba(0,0,0,0) 60%),linear-gradient(0deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,0) 30%)}
 .sf-caps{position:absolute;left:var(--gutter);bottom:18vh;bottom:18svh;width:min(46rem,88vw);display:grid}
