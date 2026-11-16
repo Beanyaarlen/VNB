@@ -1,8 +1,8 @@
-/* VNB: auto-scroll per tahap untuk cerita 3D halaman Switch & Tower.
+/* VNB: auto-scroll per tahap untuk cerita 3D beranda, Switch & Tower.
    Satu gerakan gulir ke bawah memutar animasi sampai tahap berikutnya
    dengan sendirinya; gulir ke atas memutarnya mundur ke tahap sebelumnya. */
 (() => {
-  const sec = document.querySelector('.sf[data-scene="switch"], .sf[data-scene="tower"]');
+  const sec = document.querySelector('.sf[data-scene]');
   if (!sec || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   let stops = null;       // titik berhenti, dalam progres 0..1
