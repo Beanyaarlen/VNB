@@ -10,13 +10,22 @@
   let lastInput = 0;      // waktu input gulir terakhir (untuk meredam inersia touchpad)
   let touchY = null, touchFired = false;
 
-  const ease = t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  const ease = t => -(Math.cos(Math.PI * t) - 1) / 2; // sinus: mulai & berhenti lembut tanpa lonjakan
   const top = () => sec.getBoundingClientRect().top + scrollY;
   const len = () => Math.max(1, sec.offsetHeight - innerHeight);
   const toY = p => top() + p * len();
   const prog = () => (scrollY - top()) / len();
 
+  // Titik berhenti dipilih di momen produk tampil paling jelas (dekat, aksi selesai).
+  const PICK = {
+    home:   [0, 0.215, 0.48, 0.68, 0.9, 1],   // VNB, Switch, Tower, Floor, Track, penutup
+    switch: [0, 0.2, 0.4, 0.595, 1],          // Mulai, Toggle, Vintage, Classic, Semua seri
+    tower:  [0, 0.21, 0.56, 1],               // Tersembunyi, Disentuh, Terangkat, Dipakai
+  };
+
   function setStops() {
+    const pick = PICK[sec.dataset.scene];
+    if (pick) { stops = pick; return; }
     const st = window.__sfStages;
     if (!st || !st.length) return;
     // Berhenti tepat setelah tiap teks tahap berganti, lalu di akhir cerita.
@@ -41,8 +50,8 @@
 
   function go(p) {
     const from = scrollY, to = toY(p), dist = to - from;
-    // Kecepatan normal: sekitar 0,9 detik per layar, 1,1–2,8 detik per tahap.
-    const dur = Math.min(2800, Math.max(1100, Math.abs(dist) / innerHeight * 900));
+    // Pelan dan tenang: sekitar 1,6 detik per layar, 2–4,6 detik per tahap.
+    const dur = Math.min(4600, Math.max(2000, Math.abs(dist) / innerHeight * 1600));
     const t0 = performance.now();
     window.__sfSnap = true;
     anim = { cancel: false };
